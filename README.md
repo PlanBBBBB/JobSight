@@ -6,7 +6,6 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178c6?logo=typescript)
 ![Vite](https://img.shields.io/badge/Vite-5.x-646cff?logo=vite)
 ![ECharts](https://img.shields.io/badge/ECharts-5.x-4f46e5)
-![License](https://img.shields.io/badge/license-MIT-green)
 
 ---
 
@@ -120,25 +119,3 @@ JobSight/
 | 图标 | @vicons/antd |
 | Cron 解析 | cron-parser（校验）+ cronstrue（自然语言描述） |
 | CSV 解析 | papaparse |
-
-## 🔑 几个值得一提的技术细节
-
-### 为什么热力图重建而不是主题热切换？
-
-ECharts 的内置 `'dark'` 主题是在 `echarts.init(el, 'dark')` 时注入的，包含 axis / title / tooltip 等底层配色，切换主题时必须 `dispose()` + 重新 `init()`，无法像 naive-ui 那样 props 热切换。所以监听 `isDark` 变化时直接重建整个图表实例。
-
-### n-upload 的 `clear()` 防状态残留
-
-naive-ui 的 `n-upload` 在 `:max="1"` 后内部会保留上一次上传状态，导致再次点按钮无反应。解法是在 `handleChange.finally` 里强制调用 `uploadRef.value?.clear()`，无论成功失败都重置内部状态。
-
-### Top N 排行联动热力图
-
-用 ECharts `dispatchAction({ type: 'highlight', dataIndex })` 让热力图自动 hover 到对应格子 + 弹出 tooltip，1.8s 后 `downplay` 恢复。`dataIndex` 不是 `hour * 60 + minute`，因为 Map 转数组时不是全部 1440 格都有数据，必须遍历 series.data 找精确匹配项。
-
-### 深色模式持久化
-
-首次访问无 localStorage 记录时**默认深色**（不是跟随系统），双击 header 闪电图标或 JobSight 标题切换，结果写 `localStorage.jobsight-theme`。
-
-## 📝 License
-
-MIT
