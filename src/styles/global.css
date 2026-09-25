@@ -1,0 +1,72 @@
+/* === 语义变量（浅色模式默认） === */
+:root {
+  --app-bg: #f5f7fa;
+  --header-bg: #ffffff;
+  --card-bg: #ffffff;
+
+  --text-primary: #1f1f1f;
+  --text-secondary: #999999;
+  --text-muted: #888888;
+
+  --brand-color: #18a058;
+
+  --header-shadow: 0 1px 4px rgba(0, 21, 41, 0.06);
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+
+  --scrollbar-track: #f1f1f1;
+  --scrollbar-thumb: #c1c1c1;
+  --scrollbar-thumb-hover: #a8a8a8;
+}
+
+/* === 深色模式覆盖 === */
+html.dark {
+  --app-bg: #1a1a20;
+  --header-bg: #2a2a33;
+  --card-bg: #2a2a33;
+
+  --text-primary: #e0e0e0;
+  --text-secondary: #999999;
+  --text-muted: #888888;
+
+  --brand-color: #22c55e;
+
+  --header-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+
+  --scrollbar-track: #2a2a33;
+  --scrollbar-thumb: #555566;
+  --scrollbar-thumb-hover: #666677;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #app {
+  width: 100%;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: var(--app-bg);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}

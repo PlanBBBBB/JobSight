@@ -1,0 +1,43 @@
+id,code,name,cron,remark
+1,TASK_LOG_ARCHIVE,日志归档任务,0 2 * * *,每天凌晨2点归档前一天的应用日志
+2,TASK_DB_BACKUP,数据库全量备份,30 2 * * *,每天凌晨2:30备份主库
+3,TASK_DB_BACKUP_SLAVE,从库增量备份,0 23 * * *,每天23:00备份从库binlog
+4,TASK_CACHE_CLEAR,缓存清理,0 3 * * *,每天凌晨3点清理Redis过期键
+5,TASK_SESSION_CLEAN,会话清理,0 */2 * * *,每2小时清理一次超时会话
+6,TASK_HEARTBEAT_CHECK,服务心跳检查,*/30 * * * * ?,每30秒检查所有微服务健康状态
+7,TASK_HEALTH_CHECK,系统健康检查,*/5 * * * * ?,每5分钟执行一次健康探针
+8,TASK_DISK_MONITOR,磁盘监控,0 */15 * * * ?,每15分钟检查磁盘使用率
+9,TASK_CPU_STATS,CPU指标采集,0 */10 * * * ?,每10分钟采集一次CPU负载
+10,TASK_REPORT_DAILY,每日数据报表生成,0 9 * * *,每天早上9点生成前一天业务报表
+11,TASK_REPORT_DAILY_MAIL,每日报表邮件发送,5 9 * * *,9:05将报表通过邮件发送给管理层
+12,TASK_REPORT_WEEKLY,周报生成,0 9 * * 1,每周一早9:00生成上周运营周报
+13,TASK_REPORT_WEEKLY_MAIL,周报邮件发送,30 9 * * 1,每周一早9:30发送周报邮件
+14,TASK_REPORT_MONTHLY,月度财务报表,0 9 1 * *,每月1号早9:00生成财务月报
+15,TASK_REPORT_MONTHLY_MAIL,月报邮件发送,30 9 1 * *,每月1号早9:30发送财务月报
+16,TASK_SYNC_ORDER,订单同步到物流系统,0 */1 * * * ?,每小时同步一次订单状态
+17,TASK_SYNC_INVENTORY,库存同步,*/15 * * * ?,每隔15分钟同步库存系统
+18,TASK_SYNC_USER,用户信息同步,0 3 * * 1,每周一凌晨3:00同步HR系统用户
+19,TASK_SYNC_PRICE,价格同步,30 8 * * * ?,每天早上8:30同步商品价格
+20,TASK_PUSH_NOTIFICATION,消息推送,0 0,12,18 * * ?,每天0点、12点、18点推送运营消息
+21,TASK_DATA_CLEAN,脏数据清洗,0 4 * * 0,每周日凌晨4:00清洗数据库脏数据
+22,TASK_DATA_ARCHIVE,历史数据归档,0 5 1 * *,每月1号凌晨5:00归档超过3年的历史数据
+23,TASK_BACKUP_VERIFY,备份校验,0 7 * * *,每天早上7:00校验前一天备份文件完整性
+24,TASK_MONITOR_ALERT,监控告警检查,0 */5 * * * ?,每5分钟检查监控告警规则
+25,TASK_LOG_AGGREGATE,日志聚合分析,0 1 * * ?,每天凌晨1:00聚合前一天日志
+26,TASK_INDEX_BUILD,搜索引擎索引重建,0 6 * * 6,每周六凌晨6:00重建全文索引
+27,TASK_PRICE_REFRESH,价格定时刷新,0,30 8-20 * * ?,在整点后的第0和30分钟，8点到20点之间
+28,TASK_COUPON_EXPIRE,过期优惠券清理,0 0 * * *,每天零点清理过期优惠券
+29,TASK_ORDER_CANCEL,超时订单自动取消,0 */5 * * * ?,每5分钟检查超过30分钟未支付订单并取消
+30,TASK_SEAT_RELEASE,占座释放,*/10 * * * ?,每10分钟释放占座超时资源
+31,TASK_RATE_SYNC,汇率同步,0 8 * * 1-5,工作日早上8:00同步当天外汇汇率
+32,TASK_CRON_PAYMENT,定时自动支付,0 10 * * ?,每天上午10:00执行自动代扣支付
+33,TASK_GIFT_DAILY,每日签到奖励,0 0 * * ?,每天零点重置签到状态
+34,TASK_AUDIT_LOG,审计日志导出,0 3 * * ?,每天凌晨3:00导出前一天操作审计日志
+35,TASK_MQ_RETRY,MQ消息重试,*/3 * * * ?,每3分钟扫描消费失败消息并重试
+36,TASK_BAD_CRON_TEST,非法Cron测试任务,60 25 32 * *,测试边界值的非法Cron（分=60 时=25 日=32）
+37,TASK_BAD_CRON_TEST2,语法错误测试,abc * * * *,测试语法错误的Cron表达式
+38,TASK_REWARD_SETTLE,分红结算,0 0 1 * ?,每月1号零点执行分红结算
+39,TASK_POINT_RESET,月度积分重置,0 0 1 * ?,每月1号零点重置用户月度积分
+40,TASK_COMMISSION_CALC,佣金计算,0 2 1 * ?,每月1号凌晨2:00计算上月佣金
+41,TASK_INVOICE_GEN,自动开票,0 10 * * ?,每天上午10:00自动开具电子发票
+42,TASK_SHIP_PICK,物流波次拣货,0 8,14,20 * * ?,每天8点、14点、20点三波拣货任务
